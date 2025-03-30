@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+            }
+
+            100% {
+                opacity: 1;
+            }
+        }
+
+        body {
+            background-color: black;
+            color: white;
+            animation: 3s fadeIn linear none;
+        }
+
+        body.loaded {
+            background-color: black;
+            color: white;
+        }
+    </style>
+</head>
+
+<body>
+
+    <script>
+        // 모든 리소스가 로드된 후 클래스 추가
+        window.addEventListener("load", function () {
+            document.body.innerHTML = `...`;
+        });
+    </script>
+</body>
+
+</html>
