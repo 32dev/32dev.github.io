@@ -6,6 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Gothic+A1&family=Noto+Sans+KR:wght@100..900&display=swap');
+
         @keyframes fadeIn {
             0% {
                 opacity: 0;
@@ -16,25 +18,47 @@
             }
         }
 
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        html,
+        body {
+            width: 100%;
+            height: 100%;
+        }
+
         body {
             background-color: black;
             color: white;
-            animation: 4s fadeIn linear none;
+            animation: 3s fadeIn linear none;
         }
 
         body.loaded {
             background-color: black;
             color: white;
         }
+
+        #root {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            font-size: 2rem;
+            font-family: "Gothic A1", sans-serif;
+        }
     </style>
 </head>
 
 <body>
+    <div id="root">
 
+    </div>
     <script>
         // 모든 리소스가 로드된 후 클래스 추가
         window.addEventListener("load", function () {
-            document.body.innerHTML = `...작성중`;
+            document.getElementById('root').innerHTML = `...작성중`;
         });
     </script>
 </body>
