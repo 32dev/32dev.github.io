@@ -33,6 +33,23 @@
 
         }
 
+        @keyframes fadeInWidthUp {
+            0% {
+                opacity: 1;
+                width: 0px;
+                height: 5px;
+                background-color: chartreuse;
+            }
+
+            100% {
+                opacity: 1;
+                width: 430px;
+                height: 5px;
+                background-color: chartreuse;
+            }
+
+        }
+
         * {
             margin: 0;
             padding: 0;
@@ -43,7 +60,7 @@
             width: 100%;
             height: 100%;
             font-family: "Poor Story", system-ui;
-            font-weight: 400;
+            font-weight: 100;
         }
 
         body {
@@ -124,8 +141,8 @@
         #time {
             display: none;
             position: absolute;
-            bottom: -1.5rem;
-            right: 0;
+            top: -1.5rem;
+            right: 0.5rem;
             animation: fadeIn 2s linear none;
         }
 
@@ -137,12 +154,29 @@
             text-decoration: none;
         }
 
-        #state {
+        #progress {
             display: none;
             position: absolute;
-            bottom: -1.5rem;
+            bottom: -1rem;
+            left: 0;
+            text-align: center;
+            line-height: 5px;
+            font-size: xx-small;
+            text-align: center;
+            width: 430px;
+            height: 5px;
+            animation: fadeInWidthUp 2s linear forwards;
+        }
+
+        #progress-box {
+            display: none;
+            position: absolute;
+            bottom: -1rem;
             left: 0;
             animation: fadeIn 2s linear none;
+            width: 430px;
+            border: 1px solid chartreuse;
+            height: 5px;
         }
     </style>
 </head>
@@ -190,8 +224,11 @@
         <div id="enter">
             ┛
         </div>
-        <div id="state">
-            ✔
+        <div id="progress">
+
+        </div>
+        <div id="progress-box">
+
         </div>
     </div>
     <script>
@@ -200,13 +237,15 @@
             const root = document.getElementById('root');
             const centerPanel = document.getElementById('centerPanel');
             const time = document.getElementById('time');
-            const state = document.getElementById('state');
+            const progress = document.getElementById('progress');
+            const progressBox = document.getElementById('progress-box');
             root.style.opacity = '0';
 
             // 리스트 보여주기
             centerPanel.style.display = 'block';
             time.style.display = 'block';
-            state.style.display = 'block';
+            progress.style.display = 'block';
+            progressBox.style.display = 'block'
             setInterval(updateTime, 1000); // 1초마다 갱신
         });
 
