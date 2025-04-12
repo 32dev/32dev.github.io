@@ -63,7 +63,7 @@
             left: 50%;
             top: 50%;
             font-size: x-large;
-            animation: 3s fadeInOut linear none;
+            animation: 2s fadeInOut linear none;
         }
 
         #centerPanel {
@@ -75,7 +75,7 @@
             transform: translate(-50%, -50%);
             left: 50%;
             top: 50%;
-            animation: 3s fadeIn linear none;
+            animation: 2s fadeIn linear none;
             padding: 1rem;
         }
 
@@ -126,7 +126,23 @@
             position: absolute;
             bottom: -1.5rem;
             right: 0;
-            animation: fadeIn 3s linear none;
+            animation: fadeIn 2s linear none;
+        }
+
+        a,
+        a:visited,
+        a:link,
+        a::before {
+            color: chartreuse;
+            text-decoration: none;
+        }
+
+        #state {
+            display: none;
+            position: absolute;
+            bottom: -1.5rem;
+            left: 0;
+            animation: fadeIn 2s linear none;
         }
     </style>
 </head>
@@ -148,8 +164,8 @@
                 <u>Project::</u>
             </h2>
             <ul>
-                <li>Virtual Piano</li>
-                <li>Virtual Piano2</li>
+                <li><a href="https://32comma.github.io/virtual-piano">Virtual Piano</a></li>
+                <li><a href="https://32comma.github.io/virtual-piano2">Virtual Piano2</a></li>
             </ul>
         </div>
         <div id="blog">
@@ -174,6 +190,9 @@
         <div id="enter">
             ┛
         </div>
+        <div id="state">
+            ✔
+        </div>
     </div>
     <script>
         // 모든 리소스가 로드된 후 클래스 추가
@@ -181,27 +200,35 @@
             const root = document.getElementById('root');
             const centerPanel = document.getElementById('centerPanel');
             const time = document.getElementById('time');
-            root.innerHTML = `Welcome :)`;
-            // 2초 후 애니메이션 및 리스트 보여주기
-            setTimeout(() => {
-                // root 텍스트를 흐려지게
-                root.style.opacity = '0';
+            const state = document.getElementById('state');
+            root.style.opacity = '0';
 
-                // 리스트 보여주기
-                centerPanel.style.display = 'block';
-                time.style.display = 'block';
-                setInterval(updateTime, 1000); // 1초마다 갱신
-               
-            }, 3000);
+            // 리스트 보여주기
+            centerPanel.style.display = 'block';
+            time.style.display = 'block';
+            state.style.display = 'block';
+            setInterval(updateTime, 1000); // 1초마다 갱신
         });
-        function updateTime() {
-            const now = new Date();
-            const timeString = now.toLocaleTimeString(); // HH:MM:SS 형식
-            document.getElementById('time').textContent = timeString;
+
+        function pad(n) {
+            return n.toString().padStart(2, '0');
         }
 
+        function updateTime() {
+            const now = new Date();
+            const year = now.getFullYear();
+            const month = pad(now.getMonth() + 1); // 월은 0부터 시작
+            const day = pad(now.getDate());
 
+            const hours = pad(now.getHours());
+            const minutes = pad(now.getMinutes());
+            const seconds = pad(now.getSeconds());
+
+            const formatted = `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
+            document.getElementById('time').textContent = formatted;
+        }
     </script>
+
 </body>
 
 </html>
